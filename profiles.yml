@@ -1,0 +1,17 @@
+config:
+  partial_parse: true
+  printer_width: 120
+  send_anonymous_usage_stats: false
+  use_colors: true
+normalize:
+  outputs:
+    prod:
+      dbname: munityapp
+      host: 7.tcp.eu.ngrok.io
+      pass: mutiny
+      port: 11230
+      schema: public
+      threads: 8
+      type: postgres
+      user: munityapp
+  target: prod

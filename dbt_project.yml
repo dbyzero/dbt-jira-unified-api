@@ -1,0 +1,207 @@
+name: airbyte_utils
+version: '1.0'
+config-version: 2
+profile: normalize
+model-paths:
+- models
+docs-paths:
+- docs
+analysis-paths:
+- analysis
+test-paths:
+- tests
+seed-paths:
+- data
+macro-paths:
+- macros
+target-path: ../build
+log-path: ../logs
+packages-install-path: /dbt
+clean-targets:
+- build
+- dbt_modules
+quoting:
+  database: true
+  schema: false
+  identifier: true
+models:
+  airbyte_utils:
+    +materialized: table
+    generated:
+      airbyte_ctes:
+        +tags: airbyte_internal_cte
+        +materialized: ephemeral
+      airbyte_incremental:
+        +tags: incremental_tables
+        +materialized: incremental
+        +on_schema_change: sync_all_columns
+      airbyte_tables:
+        +tags: normalized_tables
+        +materialized: table
+      airbyte_views:
+        +tags: airbyte_internal_views
+        +materialized: view
+dispatch:
+- macro_namespace: dbt_utils
+  search_order:
+  - airbyte_utils
+  - dbt_utils
+vars:
+  json_column: _airbyte_data
+  models_to_source:
+    airbyte_projects_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects: public._airbyte_raw_airbyte_projects
+    airbyte_stories_ab1: public._airbyte_raw_airbyte_stories
+    airbyte_stories_ab2: public._airbyte_raw_airbyte_stories
+    airbyte_stories_ab3: public._airbyte_raw_airbyte_stories
+    airbyte_stories: public._airbyte_raw_airbyte_stories
+    airbyte_tasks_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks: public._airbyte_raw_airbyte_tasks
+    airbyte_users_ab1: public._airbyte_raw_airbyte_users
+    airbyte_users_ab2: public._airbyte_raw_airbyte_users
+    airbyte_users_ab3: public._airbyte_raw_airbyte_users
+    airbyte_users: public._airbyte_raw_airbyte_users
+    airbyte_projects_team_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_team_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_team_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_team: public._airbyte_raw_airbyte_projects
+    airbyte_projects_owner_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_owner_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_owner_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_owner: public._airbyte_raw_airbyte_projects
+    airbyte_projects_members_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_members_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_members_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_members: public._airbyte_raw_airbyte_projects
+    airbyte_projects_followers_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_followers_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_followers_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_followers: public._airbyte_raw_airbyte_projects
+    airbyte_projects_workspace_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_workspace_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_workspace_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_workspace: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_field_settings_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_field_settings_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_field_settings_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_field_settings: public._airbyte_raw_airbyte_projects
+    airbyte_stories_created_by_ab1: public._airbyte_raw_airbyte_stories
+    airbyte_stories_created_by_ab2: public._airbyte_raw_airbyte_stories
+    airbyte_stories_created_by_ab3: public._airbyte_raw_airbyte_stories
+    airbyte_stories_created_by: public._airbyte_raw_airbyte_stories
+    airbyte_tasks_tags_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_tags_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_tags_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_tags: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_parent_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_parent_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_parent_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_parent: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_assignee_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_assignee_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_assignee_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_assignee: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_external_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_external_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_external_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_external: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_projects_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_projects_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_projects_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_projects: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_followers_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_followers_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_followers_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_followers: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_workspace_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_workspace_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_workspace_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_workspace: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependents_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependents_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependents_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependents: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_completed_by_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_completed_by_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_completed_by_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_completed_by: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependencies_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependencies_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependencies_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_dependencies: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields: public._airbyte_raw_airbyte_tasks
+    airbyte_users_photo_ab1: public._airbyte_raw_airbyte_users
+    airbyte_users_photo_ab2: public._airbyte_raw_airbyte_users
+    airbyte_users_photo_ab3: public._airbyte_raw_airbyte_users
+    airbyte_users_photo: public._airbyte_raw_airbyte_users
+    airbyte_users_workspaces_ab1: public._airbyte_raw_airbyte_users
+    airbyte_users_workspaces_ab2: public._airbyte_raw_airbyte_users
+    airbyte_users_workspaces_ab3: public._airbyte_raw_airbyte_users
+    airbyte_users_workspaces: public._airbyte_raw_airbyte_users
+    airbyte_projects_custom_fields_enum_options_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields_enum_options_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields_enum_options_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_custom_fields_enum_options: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_author_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_author_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_author_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_author: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_created_by_ab1: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_created_by_ab2: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_created_by_ab3: public._airbyte_raw_airbyte_projects
+    airbyte_projects_current_status_created_by: public._airbyte_raw_airbyte_projects
+    airbyte_tasks_likes_user_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes_user_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes_user_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_likes_user: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_user_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_user_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_user_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_hearts_user: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_project_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_project_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_project_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_project: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_section_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_section_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_section_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_memberships_section: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_created_by_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_created_by_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_created_by_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_created_by: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_value_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_value_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_value_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_value: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_options_ab1: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_options_ab2: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_options_ab3: public._airbyte_raw_airbyte_tasks
+    airbyte_tasks_custom_fields_enum_options: public._airbyte_raw_airbyte_tasks

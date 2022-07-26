@@ -1,0 +1,12 @@
+version: 2
+sources:
+- name: public
+  quoting:
+    database: true
+    schema: false
+    identifier: false
+  tables:
+  - name: _airbyte_raw_airbyte_projects
+  - name: _airbyte_raw_airbyte_stories
+  - name: _airbyte_raw_airbyte_tasks
+  - name: _airbyte_raw_airbyte_users
